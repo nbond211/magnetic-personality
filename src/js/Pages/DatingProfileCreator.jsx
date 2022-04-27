@@ -44,7 +44,7 @@ const DatingProfileCreator = ({ data, send }) => {
 
     const renderUsernameForm = () => {
         return !isUsernameFormSubmitted ? (
-            <UsernameForm data={data} send={send} />
+            <UsernameForm data={data} send={send} setIsUsernameFormSubmitted={setIsUsernameFormSubmitted}  />
         ) : (
             renderWaitingForOtherPlayers()
         );

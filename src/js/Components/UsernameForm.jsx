@@ -4,9 +4,8 @@ import { Next } from 'grommet-icons';
 import Button from '../Components/Button.jsx';
 import TextInput from '../Components/TextInput.jsx';
 
-const UsernameForm = ({ data, send }) => {
+const UsernameForm = ({ data, send, setIsUsernameFormSubmitted}) => {
   const [userName, setUsername] = useState('');
-  const [setIsUsernameFormSubmitted] = useState(false);
 
   const handleClick = () => {
     send('setFields', {

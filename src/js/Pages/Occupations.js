@@ -5,7 +5,7 @@ export default [
     'Award show awards engraver',
     'Auditor',
     'Actor',
-    'Tender'
+    'Tender',
     'Adult Basic, Secondary, and Tertiary Education and Literacy and Illiteracy Teacher',
     'Secret Agent',
     'Business Managers of Artist',
@@ -244,7 +244,7 @@ export default [
     'Presidential Monument Designer',
     'Responsible Adult',
     'Asker of Questions',
-    'Unemployed",
+    'Unemployed',
     '#GirlDad', 
     'Whistleblower',
     'Corporate Spy',

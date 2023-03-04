@@ -33,6 +33,17 @@ const websocket = ({ port, server }) => {
                 thisPlayer.currentDatingProfileId = playerId;
                 thisPlayer.wordCount = getRandomWordCount();
                 thisPlayer.curentTurnComplete = false;
+                game.isReady = false
+                return game;
+            });
+        }
+    );
+
+    gameLobby.addEventListener(
+        'ready',
+        async ({ gameId, playerId, playerName }, datastore) => {
+            await datastore.editGame(gameId, async game => {
+                game.isReady = true
                 return game;
             });
         }
@@ -78,6 +89,8 @@ const websocket = ({ port, server }) => {
                 });
                 return game;
             });
+
+            game.isReady = false
 
             await datastore.endCurrentTurn(gameId);
         }

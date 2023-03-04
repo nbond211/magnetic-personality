@@ -5,6 +5,7 @@ const StyledTextInput = props => {
     return (
         <TextInput
             {...props}
+            autoCapitalize='none'
             style={{
                 ...props.style,
                 fontSize: '32px',

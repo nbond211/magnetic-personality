@@ -262,4 +262,7 @@ export default [
     'Sandwich Artist',
     'Snow Cone Technician',
     'Game Stonks Ape',
+    'Emoji Translator',
+    'Drag Queen', 
+    'Spice Girl'
 ];

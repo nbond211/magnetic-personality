@@ -28,7 +28,7 @@ export default [
     'A shower thought I recently had ',
     'This year I really want to ', 
     "We're the same type of weird if ', 
-    "If you saw the targeted ads I get, you would think I'm ",
+    "If you saw the targeted ads I get, you would think I\'m ",
     'My zodiac sign is ',
     'Most of all I want to meet someone who deserves my ', 
     "If you ever need to bail me out of jail, it'll be because ",

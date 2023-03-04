@@ -10,7 +10,7 @@ const AdminScreen = ({ data, send }) => {
       switch (currentTurn) {
         case 1:
           return [
-            'Welcome to Magnetic Personality - the game where you and your friends collaboratively create chaotic fictional dating profiles!',
+            "Welcome to Magnetic Personality - the game where you and your friends collaboratively create chaotic fictional dating profiles...and maybe even find the loves of your life.",
             'To start, everyone use your device to submit a username for a dating profile.',
             'Try creating an eye catching username like dom_top_daddy_69 or xoxoRAWR~dragon-Slayer!',
             '*patiently waiting*'

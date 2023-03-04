@@ -264,5 +264,11 @@ export default [
     'Game Stonks Ape',
     'Emoji Translator',
     'Drag Queen', 
-    'Spice Girl'
+    'Spice Girl',
+    'Ninja',
+    'Merman',
+    'Cheese Sculptor', 
+    'Cloud Watcher', 
+    'Sloth Cuddler and Rescuer', 
+    'Dead Body Impersonator'
 ];

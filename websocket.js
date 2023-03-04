@@ -43,11 +43,15 @@ const websocket = ({ port, server }) => {
         'ready',
         async ({ gameId, playerId, playerName }, datastore) => {
             await datastore.editGame(gameId, async game => {
-                game.isReady = true
+                game.isReady = true;
                 return game;
             });
         }
     );
+
+    gameLobby.addEventListener('skip', ({ gameId }, datastore) => {
+        console.log("Skipping to the next step");
+    });
 
     gameLobby.addEventListener('setFields', async (data, datastore) => {
         const {
@@ -90,7 +94,7 @@ const websocket = ({ port, server }) => {
                 return game;
             });
 
-            game.isReady = false
+            game.isReady = false;
 
             await datastore.endCurrentTurn(gameId);
         }

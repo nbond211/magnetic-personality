@@ -75,6 +75,7 @@ const AdminScreen = ({ data, send }) => {
         <TalkingCharacter
             send={send}
             dialogue={switchDialogue(currentTurn)}
+            isReady={data.game.isReady}
         />
       );
     };

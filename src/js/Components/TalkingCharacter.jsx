@@ -5,12 +5,42 @@ import { Next } from 'grommet-icons';
 
 import Button from '../Components/Button.jsx';
 
-const TalkingCharacter = ({ dialogue, send }) => {
+const TalkingCharacter = ({ dialogue, send, isReady }) => {
     const [index, setIndex] = useState(0);
-
-    useEffect(() => {
-        setIndex(0);
-    }, [dialogue]);
+    const renderButton = () => {
+      if (!isReady) {
+        if (dialogue[index + 1]) {
+          return (
+            <Button
+                primary
+                reverse
+                label="Continue"
+                onClick={() => setIndex(prev => prev + 1)}
+                icon={<Next />}
+            />
+          );
+        } else {
+          return(
+            <Button
+              primary
+              reverse
+              label="Ready!"
+              onClick={send ? () => send('ready') : () => setIndex(prev => prev + 1)}
+              icon={<Next />}
+            />
+          );
+        }
+      } else {
+        return(
+          <Button
+              primary
+              reverse
+              label="Skip"
+              onClick={() => send('skip')}
+              icon={<Next />}
+          />);
+      }
+    };
 
     return (
         <Box
@@ -42,21 +72,7 @@ const TalkingCharacter = ({ dialogue, send }) => {
                     {dialogue[index]}
                 </AnimateOnChange>
             </Paragraph>
-            {dialogue[index + 1] ? (
-                <Button
-                    primary
-                    reverse
-                    label="Continue"
-                    onClick={() => setIndex(prev => prev + 1)}
-                    icon={<Next />}
-                />
-            ) : <Button
-                primary
-                reverse
-                label="Ready!"
-                onClick={send ? () => send('ready') : () => setIndex(prev => prev + 1)}
-                icon={<Next />}
-            />}
+            {renderButton()}
         </Box>
     );
 };

@@ -1,6 +1,7 @@
 {
   "engines": {
-    "npm": "6.x"
+    "npm": "6.x",
+    "node" : ">=16.0.0 <17.0.0"
   },
   "dependencies": {
     "grommet": "^2.20.0",

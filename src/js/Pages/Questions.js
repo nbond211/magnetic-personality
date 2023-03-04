@@ -37,5 +37,6 @@ export default [
     'I prefer to sleep ', 
     "What is your backup plan if you can't find a date on a friday night ", 
     'My kink is ', 
-    'The most bizarre conspiracy theory I believe is '
+    'The most bizarre conspiracy theory I believe is ',
+    'The weirdest dream I have ever had is ' 
 ];

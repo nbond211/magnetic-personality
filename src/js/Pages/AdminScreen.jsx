@@ -70,6 +70,7 @@ const AdminScreen = ({ data, send }) => {
           ]
         }
     };
+
     const renderTalkingCharacter = (currentTurn) => {
       return (
         <TalkingCharacter
@@ -79,19 +80,23 @@ const AdminScreen = ({ data, send }) => {
         />
       );
     };
+
     const renderCompletedPlayers = (completedPlayers) => {
       if (completedPlayers.length > 0) {
         return (
           <Layer modal={false} plain={true} position="left">
-            <div class="completed-players">
-              <p>
-                {completedPlayers.join("<br/>")}
-              </p>
+            <div className="completed-players">
+              {completedPlayers.map(playerName => (
+                <p>
+                  {playerName}
+                </p>
+              ))}
             </div>
           </Layer>
         )
       }
-    }
+    };
+
     const renderDatingProfiles = (currentTurn, players) => {
       if (currentTurn > 5 && currentTurn < 15) {
         return (
@@ -108,13 +113,15 @@ const AdminScreen = ({ data, send }) => {
         );
       }
     };
+
     const renderLeaveButton = (currentTurn)  => {
       if (currentTurn === 16) {
         return (
           <Button onClick={() => send('leave')} margin="medium" style={{ marginTop: '30px' }} primary label="Leave Game" />
         );
       }
-    }
+    };
+
     const render = () => {
         const currentTurn = data?.turn?.index || 0;
         const completePlayerNames = data.game.players
@@ -127,7 +134,7 @@ const AdminScreen = ({ data, send }) => {
         } else {
           return (
             <>
-              {renderTalkingCharacter(currentTurn)};
+              {renderTalkingCharacter(currentTurn)}
               {renderDatingProfiles(currentTurn, data.game.players)}
               {renderCompletedPlayers(completePlayerNames)}
               {renderLeaveButton(currentTurn)}

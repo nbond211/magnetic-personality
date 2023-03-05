@@ -5,8 +5,13 @@ import { Next } from 'grommet-icons';
 
 import Button from '../Components/Button.jsx';
 
-const TalkingCharacter = ({ dialogue, send, isReady }) => {
+const TalkingCharacter = ({ dialogue, send, isReady, currentTurn }) => {
     const [index, setIndex] = useState(0);
+
+    useEffect(() => {
+      setIndex(0);
+  }, [currentTurn]);
+
     const renderButton = () => {
       if (!isReady) {
         if (dialogue[index + 1]) {

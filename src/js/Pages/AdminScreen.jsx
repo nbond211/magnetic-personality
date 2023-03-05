@@ -99,7 +99,7 @@ const AdminScreen = ({ data, send }) => {
     };
 
     const renderDatingProfiles = (currentTurn, players) => {
-      if (currentTurn > 5 && currentTurn < 15) {
+      if (currentTurn > 5) {
         return (
           <Box>
             <Carousel fill controls={false} play={3000}>

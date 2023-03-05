@@ -110,7 +110,7 @@ const AdminScreen = ({ data, send }) => {
       if (currentTurn > 5) {
         return (
           <Box>
-            <Carousel fill controls={false} play={3000}>
+            <Carousel fill controls={false} play={10000}>
               {players
                 .filter(player => !player.isAdmin)
                 .map(player => player?.datingProfile)

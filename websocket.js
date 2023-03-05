@@ -181,7 +181,7 @@ const websocket = ({ port, server }) => {
 
             console.log('game.players: ', game.players)
 
-            const test = game.players.every(player => {
+            const allProfilesHaveVotes = game.players.every(player => {
                 console.log('player: ', player);
                 return (
                     player.isAdmin || player.datingProfile?.votes?.length ===
@@ -189,37 +189,82 @@ const websocket = ({ port, server }) => {
                 );
             });
 
-            console.log('test: ', test);
+            const calculateMatch = (playerId, game) => {
+                const thisPlayer = getPlayer(playerId, game);
+                const { votes } = thisPlayer.datingProfile;
 
-            if (test) {
+                const frequencies = votes.map(vote => ({
+                    vote,
+                    frequency: votes.filter(
+                        thisVote => thisVote === vote
+                    )
+                }));
+                return lodash.maxBy(frequencies, 'frequency')
+                    .vote;
+            };
+
+            const rankMatches = (datingProfileId, game) => {
+                const datingProfile = getDatingProfile(datingProfileId, game)
+                const { votes } = datingProfile;
+                const frequencies = votes.reduce((acc, currentVote) => {
+                    if (acc[currentVote]) {
+                        acc[currentVote] += 1
+                    } else {
+                        acc[currentVote] = 1
+                    }
+                    return acc
+                }, {})
+
+                return Object
+                    .entries(frequencies)
+                    .sort((a, b) => b[1] - a[1])
+                    .map(([playerId, frequency]) => playerId)
+            }
+
+            const calculateMatches = (game) => {
+                const nonAdminPlayers = game.players.filter(player => !player.isAdmin)
+                const playerIds = nonAdminPlayers.map(player => player.playerId)
+                const datingProfileIds = nonAdminPlayers.map(player => player.currentDatingProfileId)
+
+                const playersWithMatches = []
+                const datingProfilesWithMatches = []
+
+                const matches = {}
+
+                datingProfileIds.forEach(datingProfileId => {
+                    const rankedMatches = rankMatches(datingProfileId, game)
+                    rankedMatches.every(match => {
+                        if (!playersWithMatches.includes(match)) {
+                            matches[datingProfileId] = match
+                            playersWithMatches.push(match)
+                            datingProfilesWithMatches.push(datingProfileId)
+                            return false
+                        }
+                    })
+                })
+
+                const playersWithoutMatches = playerIds.filter(id => !playersWithMatches.includes(id))
+                const datingProfilesWithoutMatches = datingProfileIds.filter(id => !datingProfilesWithMatches.includes(id))
+
+                datingProfilesWithoutMatches.forEach(datingProfileId => {
+                    matches[datingProfileId] = playersWithoutMatches[0]
+                    playersWithoutMatches.shift()
+                })
+
+                return matches
+            }
+
+            if (allProfilesHaveVotes) {
                 await datastore.editGame(gameId, async game => {
-                    game.players
-                        .filter(player => !player.isAdmin)
-                        .forEach(player => {
-                            player.currentDatingProfileId = getNextId(
-                                player.currentDatingProfileId,
-                                game
-                            );
 
-                            const calculateMatch = (playerId, game) => {
-                                const thisPlayer = getPlayer(playerId, game);
-                                const { votes } = thisPlayer.datingProfile;
+                    const matches = calculateMatches(game)
 
-                                const frequencies = votes.map(vote => ({
-                                    vote,
-                                    frequency: votes.filter(
-                                        thisVote => thisVote === vote
-                                    )
-                                }));
-                                return lodash.maxBy(frequencies, 'frequency')
-                                    .vote;
-                            };
+                    console.log('matches: ', JSON.stringify(matches))
 
-                            player.match = calculateMatch(
-                                player.playerId,
-                                game
-                            );
-                        });
+                    Object.entries(matches).forEach(([datingProfileId, playerId]) => {
+                        const thisPlayer = getPlayer(playerId, game)
+                        thisPlayer.match = datingProfileId
+                    })
                     return game;
                 });
 

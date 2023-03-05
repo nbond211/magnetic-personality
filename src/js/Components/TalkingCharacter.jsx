@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Paragraph } from 'grommet';
 import { animations, AnimateOnChange } from 'react-animation';
-import useSound from 'use-sound';
 import { Next } from 'grommet-icons';
 
 import Button from '../Components/Button.jsx';

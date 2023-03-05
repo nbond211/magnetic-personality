@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Box, Layer, Carousel } from 'grommet';
-import useSound from 'use-sound';
 import TalkingCharacter from '../Components/TalkingCharacter.jsx';
 import DatingProfilePreview from '../Components/DatingProfilePreview.jsx';
 

@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Layer, Carousel } from 'grommet';
+import useSound from 'use-sound';
 import TalkingCharacter from '../Components/TalkingCharacter.jsx';
 import DatingProfilePreview from '../Components/DatingProfilePreview.jsx';
 
 import Button from '../Components/Button.jsx'
 
+
 const AdminScreen = ({ data, send }) => {
+    const playBackground = new Audio('/sounds/sfx/happy-and-fun.mp3');
+
+    useEffect(() => {
+      playBackground.volume = .25;
+      playBackground.play();
+    }, []);
+
     const switchDialogue = (currentTurn) => {
       switch (currentTurn) {
         case 1:

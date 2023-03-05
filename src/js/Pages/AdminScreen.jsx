@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Layer } from 'grommet';
+import { Box, Layer, Carousel } from 'grommet';
 import TalkingCharacter from '../Components/TalkingCharacter.jsx';
 import DatingProfilePreview from '../Components/DatingProfilePreview.jsx';
 
@@ -77,6 +77,7 @@ const AdminScreen = ({ data, send }) => {
             send={send}
             dialogue={switchDialogue(currentTurn)}
             isReady={data.game.isReady}
+            currentTurn={currentTurn}
         />
       );
     };
@@ -87,7 +88,7 @@ const AdminScreen = ({ data, send }) => {
           <Layer modal={false} plain={true} position="left">
             <div className="completed-players">
               {completedPlayers.map(playerName => (
-                <p>
+                <p key={playerName}>
                   {playerName}
                 </p>
               ))}
@@ -101,14 +102,16 @@ const AdminScreen = ({ data, send }) => {
       if (currentTurn > 5 && currentTurn < 15) {
         return (
           <Box>
-            {players
-              .filter(player => !player.isAdmin)
-              .map(player => player?.datingProfile)
-              .map(datingProfile => (
-                <DatingProfilePreview
-                    datingProfile={datingProfile}
-                />
-            ))}
+            <Carousel fill controls={false} play={3000}>
+              {players
+                .filter(player => !player.isAdmin)
+                .map(player => player?.datingProfile)
+                .map(datingProfile => (
+                  <DatingProfilePreview
+                      datingProfile={datingProfile}
+                  />
+              ))}
+            </Carousel>
           </Box>
         );
       }

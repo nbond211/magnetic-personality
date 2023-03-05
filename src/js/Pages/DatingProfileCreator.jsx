@@ -402,7 +402,11 @@ const DatingProfileCreator = ({ data, send }) => {
                 return `${wordCount} words remaining`;
             }
             if (numberOfWords === wordCount) {
+              if (answerIndex < 2) {
                 return 'Submit';
+              } else {
+                return 'Finish. That! SENTENCE!!'
+              }
             }
             return `${wordCount - numberOfWords} words remaining`;
         };

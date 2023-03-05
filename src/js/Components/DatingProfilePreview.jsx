@@ -51,7 +51,7 @@ const DatingProfilePreview = ({ datingProfile }) => {
                         src={
                             datingProfile?.profilePic
                                 ? datingProfile?.profilePic
-                                : '/blank-profile-pic.png'
+                                : '/images/blank-profile-pic.png'
                         }
                     />
                 </Box>

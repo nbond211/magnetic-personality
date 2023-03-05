@@ -1,16 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Paragraph } from 'grommet';
 import { animations, AnimateOnChange } from 'react-animation';
+import useSound from 'use-sound';
 import { Next } from 'grommet-icons';
 
 import Button from '../Components/Button.jsx';
 
 const TalkingCharacter = ({ dialogue, send, isReady, currentTurn }) => {
+    const playWelcome = new Audio('/sounds/narration/welcome.wav');
+
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
       setIndex(0);
-  }, [currentTurn]);
+    }, [currentTurn]);
+
+    useEffect(() => {
+      if (index === 0) {
+        playWelcome.play();
+      }
+    }, []);
 
     const renderButton = () => {
       if (!isReady) {
@@ -64,7 +73,7 @@ const TalkingCharacter = ({ dialogue, send, isReady, currentTurn }) => {
                     animation: animations.slideIn,
                     maxWidth: '500px'
                 }}
-                src="/magnet.png"
+                src="/images/magnet.png"
             />
             <Paragraph
                 size="xxlarge"

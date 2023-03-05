@@ -1,7 +1,7 @@
 {
   "engines": {
     "npm": "6.x",
-    "node" : ">=16.0.0 <17.0.0"
+    "node": ">=16.0.0 <17.0.0"
   },
   "dependencies": {
     "grommet": "^2.20.0",
@@ -12,6 +12,7 @@
     "react-animation": "^1.2.2",
     "react-icons": "^4.3.1",
     "unsplash-js": "^7.0.15",
+    "use-sound": "^4.0.1",
     "websocket-game-lobby": "4.0.0"
   },
   "devDependencies": {

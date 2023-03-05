@@ -56,7 +56,7 @@ const AdminScreen = ({ data, send }) => {
           ]
         case 15:
           return  [
-            `These answers really say a lot about who you guys are 😏`,
+            `Wow, these are twisted... and kind of hot 😏`,
             `I feel like I'm already in love with everyone! 😍`,
             `But alas... 😭 I don't get to match with these profiles.`,
             'YOU DO!',
@@ -73,7 +73,7 @@ const AdminScreen = ({ data, send }) => {
             `Ooh! Let's look at the dating profiles you all just created!`,
             `These are some really interesting eligible daters 😏`,
             `Okay so the next thing we are gonna do is answer questions as these dating profiles.`,
-            `But here's the catch - you'll only be able to contribute part ofthe answer before you must pass the dating profile along to the next player for them to finish the response.`,
+            `But here's the catch - you'll only be able to contribute part of the answer before you must pass the dating profile along to the next player for them to finish the response.`,
             `You guys can follow instructions... just do what it says to do on your phone and we'll reconvene as a group after 😉`
           ]
         }

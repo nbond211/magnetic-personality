@@ -261,34 +261,6 @@ const websocket = ({ port, server }) => {
                         const thisPlayer = getPlayer(playerId, game)
                         thisPlayer.match = datingProfileId
                     })
-
-                    // game.players
-                    //     .filter(player => !player.isAdmin)
-                    //     .forEach(player => {
-                    //         player.currentDatingProfileId = getNextId(
-                    //             player.currentDatingProfileId,
-                    //             game
-                    //         );
-                    //
-                    //         // const calculateMatch = (playerId, game) => {
-                    //         //     const thisPlayer = getPlayer(playerId, game);
-                    //         //     const { votes } = thisPlayer.datingProfile;
-                    //         //
-                    //         //     const frequencies = votes.map(vote => ({
-                    //         //         vote,
-                    //         //         frequency: votes.filter(
-                    //         //             thisVote => thisVote === vote
-                    //         //         )
-                    //         //     }));
-                    //         //     return lodash.maxBy(frequencies, 'frequency')
-                    //         //         .vote;
-                    //         // };
-                    //
-                    //         player.match = calculateMatch(
-                    //             player.playerId,
-                    //             game
-                    //         );
-                    //     });
                     return game;
                 });
 

@@ -6,7 +6,7 @@ import { Next } from 'grommet-icons';
 import Button from '../Components/Button.jsx';
 
 const TalkingCharacter = ({ dialogue, send, isReady, currentTurn }) => {
-    const playWelcome = new Audio('/sounds/narration/welcome.wav');
+    const playWelcome = new Audio('https://dl.sndup.net/ybdx/welcome.wav');
 
     const [index, setIndex] = useState(0);
 

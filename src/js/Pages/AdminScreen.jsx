@@ -7,10 +7,10 @@ import Button from '../Components/Button.jsx'
 
 
 const AdminScreen = ({ data, send }) => {
-    const playBackground = new Audio('/sounds/sfx/happy-and-fun.mp3');
+    const playBackground = new Audio('https://dl.sndup.net/pgf7/background1.mp3');
 
     useEffect(() => {
-      playBackground.volume = .25;
+      playBackground.volume = .15;
       playBackground.play();
     }, []);
 

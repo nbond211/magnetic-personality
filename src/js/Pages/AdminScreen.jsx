@@ -50,7 +50,7 @@ const AdminScreen = ({ data, send }) => {
             `Ooh! Let's look at the dating profiles you all just created!`,
             `These are some really interesting eligible daters 😏`,
             `Okay so the next thing we are gonna do is answer questions as these dating profiles.`,
-            `But here's the catch - you'll only be able to contribute part ofthe answer before you must pass the dating profile along to the next player for them to finish the response.`,
+            `But here's the catch - you'll only be able to contribute part of the answer before you must pass the dating profile along to the next player for them to finish the response.`,
             `You guys can follow instructions... just do what it says to do on your phone and we'll reconvene as a group after 😉`
           ]
         case 15:
@@ -108,10 +108,16 @@ const AdminScreen = ({ data, send }) => {
     };
 
     const renderDatingProfiles = (currentTurn, players) => {
+      const profileTime = currentTurn < 15 ? 20000 : 10000;
       if (currentTurn > 5) {
         return (
-          <Box>
-            <Carousel fill controls={false} play={10000}>
+          <Box
+              width="100%"
+              height="50%"
+              direction="column"
+              align="center"
+              justify="center">
+            <Carousel fill controls={false} play={profileTime}>
               {players
                 .filter(player => !player.isAdmin)
                 .map(player => player?.datingProfile)

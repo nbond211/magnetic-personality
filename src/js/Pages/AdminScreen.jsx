@@ -96,7 +96,7 @@ const AdminScreen = ({ data, send }) => {
             <div className="completed-players">
               <AnimateGroup animation="slide">
                 {completedPlayers.map(playerName => (
-                  <p key={playerName}>
+                  <p key={playerName class="player-name"}>
                     {playerName}
                   </p>
                 ))}

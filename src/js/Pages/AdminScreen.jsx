@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import { Box, Layer, Carousel } from 'grommet';
+import { AnimateGroup } from 'react-animation';
 import TalkingCharacter from '../Components/TalkingCharacter.jsx';
 import DatingProfilePreview from '../Components/DatingProfilePreview.jsx';
-
 import Button from '../Components/Button.jsx'
-
 
 const AdminScreen = ({ data, send }) => {
     const playBackground = new Audio('https://dl.sndup.net/pgf7/background1.mp3');
@@ -95,11 +94,13 @@ const AdminScreen = ({ data, send }) => {
         return (
           <Layer modal={false} plain={true} position="left">
             <div className="completed-players">
-              {completedPlayers.map(playerName => (
-                <p key={playerName}>
-                  {playerName}
-                </p>
-              ))}
+              <AnimateGroup animation="slide">
+                {completedPlayers.map(playerName => (
+                  <p key={playerName}>
+                    {playerName}
+                  </p>
+                ))}
+              </AnimateGroup>
             </div>
           </Layer>
         )

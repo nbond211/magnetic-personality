@@ -58,15 +58,15 @@ const TalkingCharacter = ({ dialogue, send, isReady, currentTurn }) => {
     return (
         <Box
             width="100%"
-            height="100%"
+            height="50%"
             direction="column"
             align="center"
             justify="center"
-            style={{ marginTop: '100px' }}
+            style={{ marginTop: '50px' }}
         >
             <img
                 className="character"
-                height="auto"
+                height="200px"
                 width="auto"
                 style={{
                     animation: animations.slideIn,

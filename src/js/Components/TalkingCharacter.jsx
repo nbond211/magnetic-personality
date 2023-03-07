@@ -7,6 +7,7 @@ import Button from '../Components/Button.jsx';
 
 const TalkingCharacter = ({ dialogue, send, isReady, currentTurn }) => {
     const playWelcome = new Audio('https://dl.sndup.net/ybdx/welcome.wav');
+    let timer;
 
     const [index, setIndex] = useState(0);
 
@@ -20,38 +21,28 @@ const TalkingCharacter = ({ dialogue, send, isReady, currentTurn }) => {
       }
     }, []);
 
-    const renderButton = () => {
-      if (!isReady) {
+    const updateIndex = () => {
+      timer = !timer && setInterval(() => {
         if (dialogue[index + 1]) {
-          return (
-            <Button
-                primary
-                reverse
-                label="Continue"
-                onClick={() => setIndex(prev => prev + 1)}
-                icon={<Next />}
-            />
-          );
-        } else {
-          return(
-            <Button
-              primary
-              reverse
-              label="Ready!"
-              onClick={send ? () => send('ready') : () => setIndex(prev => prev + 1)}
-              icon={<Next />}
-            />
-          );
+          console.log("Next thing because index: " + index);
+          setIndex(prevIndex => prevIndex + 1)
+          if (!dialogue[index + 2]) {
+            console.log("Sending ready");
+            send('ready');
+            clearInterval(timer);
+          }
         }
-      } else {
-        return(
-          <Button
-              primary
-              reverse
-              label="Skip"
-              onClick={() => send('skip')}
-              icon={<Next />}
-          />);
+      }, 5000)
+    };
+
+    useEffect(() => {
+      updateIndex();
+      return () => clearInterval(timer)
+    }, [index]);
+
+    const renderDialogue = () => {
+      if (dialogue[index]) {
+        return dialogue[index][0];
       }
     };
 
@@ -82,10 +73,9 @@ const TalkingCharacter = ({ dialogue, send, isReady, currentTurn }) => {
                     animationIn="bounceIn"
                     animationOut="bounceOut"
                 >
-                    {dialogue[index]}
+                    {renderDialogue()}
                 </AnimateOnChange>
             </Paragraph>
-            {renderButton()}
         </Box>
     );
 };

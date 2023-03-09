@@ -415,70 +415,62 @@ const DatingProfileCreator = ({ data, send }) => {
             return <LookAtScreen/>
         }
 
+        let label;
+        let prompt;
+
+        switch (answerIndex) {
+          case 0:
+            label = 'Respond to the following prompt as';
+            prompt = currentDatingProfile.questions[questionIndex]
+            break;
+          case 1:
+            label = 'continue the following response as';
+          case 2:
+            label = 'finish the following response as';
+          default:
+            prompt = currentDatingProfile.answers[questionIndex][answerIndex - 1];
+        }
+
         return (
             <>
-                {!isAnswerSubmitted ? (
-                    <>
-                        {answerIndex === 0 ? (
-                            <>
-                                <Paragraph size="xxlarge">
-                                    Respond to the following prompt as
-                                </Paragraph>
-                                <DatingProfilePreview
-                                    datingProfile={currentDatingProfile}
-                                />
-                                <Paragraph size="xxlarge">
-                                    {
-                                        currentDatingProfile.questions[
-                                            questionIndex
-                                        ]
-                                    }
-                                </Paragraph>
-                            </>
-                        ) : (
-                            <>
-                                <Paragraph size="xxlarge">
-                                    {answerIndex === 2 ? 'finish' : 'continue'}{' '}
-                                    the following response as
-                                </Paragraph>
-                                <DatingProfilePreview
-                                    datingProfile={currentDatingProfile}
-                                />
-                                <Paragraph size="xxlarge">
-                                    {
-                                        currentDatingProfile.answers[
-                                            questionIndex
-                                        ][answerIndex - 1]
-                                    }
-                                </Paragraph>
-                            </>
-                        )}
-                        <TextInput
-                            value={currentValue}
-                            onChange={event =>
-                                setQuestionAnswer(
-                                    questionIndex,
-                                    answerIndex,
-                                    event.target.value
-                                )
-                            }
-                            placeholder="..."
-                        />
-                        <Button
-                            style={{ marginTop: '30px' }}
-                            disabled={
-                                numberOfWords !== wordCount
-                            }
-                            primary
-                            reverse
-                            label={getButtonLabel()}
-                            onClick={handleClick}
-                            icon={<Next />}
-                        />
-                    </>
-                ) : (
-                    renderWaitingForOtherPlayers()
-                )}
+              {!isAnswerSubmitted ? (
+                <>
+                  <Paragraph size="xxlarge">
+                    {label}
+                  </Paragraph>
+                  <DatingProfilePreview
+                    datingProfile={currentDatingProfile}
+                  />
+                  <Paragraph size="xxlarge">
+                    {prompt}
+                  </Paragraph>
+
+                  <TextInput
+                      value={currentValue}
+                      onChange={event =>
+                          setQuestionAnswer(
+                              questionIndex,
+                              answerIndex,
+                              event.target.value
+                          )
+                      }
+                      placeholder="..."
+                  />
+                  <Button
+                      style={{ marginTop: '30px' }}
+                      disabled={
+                          numberOfWords !== wordCount
+                      }
+                      primary
+                      reverse
+                      label={getButtonLabel()}
+                      onClick={handleClick}
+                      icon={<Next />}
+                  />
+                </>
+              ) : (
+                  renderWaitingForOtherPlayers()
+              )}
             </>
         );
     };

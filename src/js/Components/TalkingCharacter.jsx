@@ -46,6 +46,12 @@ const TalkingCharacter = ({ dialogue, send, isReady, currentTurn }) => {
       }
     };
 
+    const skipInstructions = () => {
+      clearInterval(timer);
+      setIndex(dialogue.length - 1);
+      send('ready');
+    };
+
     return (
         <Box
             width="100%"
@@ -76,6 +82,7 @@ const TalkingCharacter = ({ dialogue, send, isReady, currentTurn }) => {
                     {renderDialogue()}
                 </AnimateOnChange>
             </Paragraph>
+            <Button onClick={() => skipInstructions()} margin="medium" style={{ marginTop: '30px' }} primary label="Skip Instructions" />
         </Box>
     );
 };

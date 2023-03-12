@@ -140,63 +140,6 @@ const DatingProfileCreator = ({ data, send }) => {
         );
     };
 
-    const [age, setAge] = useState();
-    const [isAgeFormSubmitted, setIsAgeFormSubmitted] = useState(false);
-    const renderAgeForm = () => {
-        const handleClick = () => {
-            send('setFields', {
-                fieldNames: ['age'],
-                age,
-                datingProfileId: currentDatingProfileId
-            });
-            setIsAgeFormSubmitted(true);
-        };
-
-        if (!data?.game.isReady) {
-            return <LookAtScreen/>
-        }
-
-        return !isAgeFormSubmitted ? (
-            <Box direction="column" style={{ alignItems: 'center' }}>
-                <Paragraph
-                    style={{ fontSize: '24px', marginRight: 'auto' }}
-                    size="xxlarge"
-                >
-                    How old is this person?
-                </Paragraph>
-                <Box
-                    margin="medium"
-                    animation="slideUp"
-                    height="medium"
-                    width="medium"
-                >
-                    <Image
-                        style={{ borderRadius: '15px' }}
-                        fit="cover"
-                        src={currentDatingProfile?.profilePic}
-                    />
-                </Box>
-                <TextInput
-                    type="number"
-                    placeholder="How old?"
-                    value={age}
-                    onChange={event => setAge(event.target.value)}
-                    style={{ marginBottom: '24px' }}
-                />
-                <Button
-                    disabled={!age}
-                    primary
-                    reverse
-                    label="Submit"
-                    onClick={handleClick}
-                    icon={<Next />}
-                />
-            </Box>
-        ) : (
-            renderWaitingForOtherPlayers()
-        );
-    };
-
     const professionOptionsData = lodash.sampleSize(occupations, 10);
     const [profession, setProfession] = useState(professionOptionsData[0]);
     const [professionOptions] = useState(professionOptionsData);
@@ -571,32 +514,30 @@ const DatingProfileCreator = ({ data, send }) => {
             case 2:
                 return renderProfilePicSelector();
             case 3:
-                return renderAgeForm();
-            case 4:
                 return renderProfessionForm();
-            case 5:
+            case 4:
                 return renderWorkplaceForm();
-            case 6:
+            case 5:
                 return renderAnswerForm(0, 0);
-            case 7:
+            case 6:
                 return renderAnswerForm(0, 1);
-            case 8:
+            case 7:
                 return renderAnswerForm(0, 2);
-            case 9:
+            case 8:
                 return renderAnswerForm(1, 0);
-            case 10:
+            case 9:
                 return renderAnswerForm(1, 1);
-            case 11:
+            case 10:
                 return renderAnswerForm(1, 2);
-            case 12:
+            case 11:
                 return renderAnswerForm(2, 0);
-            case 13:
+            case 12:
                 return renderAnswerForm(2, 1);
-            case 14:
+            case 13:
                 return renderAnswerForm(2, 2);
-            case 15:
+            case 14:
                 return renderVotingForm();
-            case 16:
+            case 15:
                 return renderVotingResults();
             default:
                 return <p>default</p>;

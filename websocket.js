@@ -23,6 +23,12 @@ const websocket = ({ port, server }) => {
         datastore
     });
 
+    const randomAge = () => {
+      const min = Math.ceil(21);
+      const max = Math.floor(175);
+      return Math.floor(Math.random() * (max - min) + min);
+    };
+
     gameLobby.addEventListener(
         'join',
         async ({ gameId, playerId, playerName }, datastore) => {
@@ -71,8 +77,9 @@ const websocket = ({ port, server }) => {
             });
 
             if (setProfilePictureOptions) {
-                thisPlayer.profilePictureOptions =
-                    await getProfilePictureOptions();
+                // Automatically set age
+                thisDatingProfile['age'] = randomAge();
+                thisPlayer.profilePictureOptions = await getProfilePictureOptions();
             }
 
             thisPlayer.curentTurnComplete = true;

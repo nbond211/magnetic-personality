@@ -32,20 +32,15 @@ const AdminScreen = ({ data, send }) => {
         case 3:
           return [
             ['Okay, those people are cute! Well... some of them are.'],
-            ['Now guess how old everyone is!']
-          ]
-        case 4:
-          return [
-            ['You all made guesses. 🙄'],
             ['Ooh! This next one will be fun!'],
             ['Choose an occupation for this person!']
           ]
-        case 5:
+        case 4:
           return [
             ['Looks like everyone has a job now! Wow, capitalism sucks!'],
             ['Now decide where everyone works!']
           ]
-        case 6:
+        case 5:
           return [
             [`Ooh! Let's look at the dating profiles you all just created!`],
             [`These are some really interesting eligible daters 😏`],
@@ -53,7 +48,7 @@ const AdminScreen = ({ data, send }) => {
             [`But here's the catch - you'll only be able to contribute part of the answer before you must pass the dating profile along to the next player for them to finish the response.`],
             [`You guys can follow instructions... just do what it says to do on your phone and we'll reconvene as a group after 😉`]
           ]
-        case 15:
+        case 14:
           return  [
             [`Wow, these are twisted... and kind of hot 😏`],
             [`I feel like I'm already in love with everyone! 😍`],
@@ -62,7 +57,7 @@ const AdminScreen = ({ data, send }) => {
             ['Each player will match with one of these dating profiles. You will all vote to decide who!'],
             ['On your device, read through each dating profile and cast your vote for which player they should go on a date with.']
           ]
-        case 16:
+        case 15:
           return [
             [`The results are in! Everyone look at your device to see who your match is!`],
             [`Thanks for playing!`]

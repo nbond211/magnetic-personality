@@ -103,7 +103,7 @@ const AdminScreen = ({ data, send }) => {
     };
 
     const renderDatingProfiles = (currentTurn, players) => {
-      const profileTime = currentTurn < 14 ? 20000 : 10000;
+      const profileTime = currentTurn < 14 ? 10000 : 20000;
       if (currentTurn > 4) {
         return (
           <Box

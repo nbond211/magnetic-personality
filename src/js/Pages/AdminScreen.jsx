@@ -103,8 +103,8 @@ const AdminScreen = ({ data, send }) => {
     };
 
     const renderDatingProfiles = (currentTurn, players) => {
-      const profileTime = currentTurn < 15 ? 20000 : 10000;
-      if (currentTurn > 5) {
+      const profileTime = currentTurn < 14 ? 20000 : 10000;
+      if (currentTurn > 4) {
         return (
           <Box
               width="100%"
@@ -128,7 +128,7 @@ const AdminScreen = ({ data, send }) => {
     };
 
     const renderLeaveButton = (currentTurn)  => {
-      if (currentTurn === 16) {
+      if (currentTurn === 15) {
         return (
           <Button onClick={() => send('leave')} margin="medium" style={{ marginTop: '30px' }} primary label="Leave Game" />
         );

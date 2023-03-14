@@ -25,7 +25,7 @@ const websocket = ({ port, server }) => {
 
     const randomAge = () => {
       const min = Math.ceil(21);
-      const max = Math.floor(175);
+      const max = Math.floor(99);
       return Math.floor(Math.random() * (max - min) + min);
     };
 

@@ -8,7 +8,7 @@ import { DataContext } from '../Game.jsx';
 const DatingProfilePreview = ({ datingProfile }) => {
     const data = React.useContext(DataContext);
 
-    const canRenderAnswers = data.turn.index >= 15;
+    const canRenderAnswers = data.turn.index >= 14;
 
     console.log('canRenderAnswers: ', canRenderAnswers);
 
